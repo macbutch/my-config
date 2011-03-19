@@ -2,8 +2,17 @@ OS=`uname | tr '[A-Z]' '[a-z]'`
 EXTRA_BIN="$HOME/bin"
 if [ "$OS" == "darwin" ]; then
   EXTRA_BIN="$HOME/bin/osx/:$EXTRA_BIN"
-# elif [ "$OSTYPE" == "cygwin" ]; then
-#   blah blah
+else
+  OS=`uname -o | tr '[A-Z' '[a-z]'`
+  if [ "$OS" == "cygwin" ]; then
+    EXTRA_BIN="$HOME/bin/cygwin:$EXTRA_BIN"
+    . /etc/bash_completion
+    # TMP and TEMP are defined in the Windows environment.  Leaving
+    # them set to the default Windows temporary directory can have
+    # unexpected consequences.
+    unset TMP
+    unset TEMP
+  fi
 # elif [ "$OSTYPE" == "linux" ]; then
 #   blah blah
 fi

@@ -8,7 +8,7 @@
 # start with vim config as it is probably the most immediately useful
 echo "Checking vim configuration... "
 mkdir -p ~/.vim
-cp -r vim/* ~/.vim
+cp -R vim/* ~/.vim
 
 if ! [ -a ~/.vimrc ]; then
   echo "Creating ~/.vimrc ... "
@@ -42,6 +42,6 @@ echo "Bash configuration is up-to-date."
 # binary files -- basically just copy ...
 echo "Updating local utils ..."
 mkdir -p ~/bin
-cp -r bin ~/bin
+cp -R bin/* $HOME/bin
 echo "Local utils up-to-date."
 

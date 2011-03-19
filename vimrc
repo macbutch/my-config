@@ -51,9 +51,10 @@ if &diff
 	set diffopt+=iwhite
 endif
 
+"set ff=dos
+
 " line and column
 set ruler
-"#set statusline=%<\ %n:%f\ %m%r%{fugitive#statusline()}%=%-14.(line:\ %l\ of\ %L,\ col:\ %c%V\ (%P)%)
 set statusline=%<\ %n:%f\ %m%r%=%-14.(line:\ %l\ of\ %L,\ col:\ %c%V\ (%P)%)
 set laststatus=2 
 
