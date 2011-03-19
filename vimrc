@@ -1,4 +1,3 @@
-
 set encoding=utf8
 set autoread
 set nocompatible

@@ -1,0 +1,47 @@
+#!/bin/bash
+
+# Update (or install) the scripts and configuration files in this 
+
+# repository. Generally this won't overwrite existing stuff - it might in
+# some cases (for example vim plugins are basically just copied wholesale).
+
+# start with vim config as it is probably the most immediately useful
+echo "Checking vim configuration... "
+mkdir -p ~/.vim
+cp -r vim/* ~/.vim
+
+if ! [ -a ~/.vimrc ]; then
+  echo "Creating ~/.vimrc ... "
+  cp vimrc ~/.vimrc
+else
+  if diff ~/.vimrc vimrc; then
+    echo "~/.vimrc is already up-to-date."
+  else
+    echo "Need to merge ~/.vimrc ... "
+    vimdiff vimrc ~/.vimrc 
+  fi
+fi
+echo "Vim configuration is up-to-date."
+echo
+
+# next bashrc
+echo "Checking bash configuration"
+if ! [ -a ~/.bashrc ]; then
+  echo "No existing ~/.bashrc - creating one for you."
+  cp bashrc ~/.bashrc
+else
+  if diff ~/.bashrc bashrc; then
+    echo "~/.bashrc is already up-to-date."
+  else
+    echo "Need to merge ~/.bashrc ..."
+    vimdiff bashrc ~/.bashrc 
+  fi
+fi
+echo "Bash configuration is up-to-date."
+
+# binary files -- basically just copy ...
+echo "Updating local utils ..."
+mkdir -p ~/bin
+cp -r bin ~/bin
+echo "Local utils up-to-date."
+
