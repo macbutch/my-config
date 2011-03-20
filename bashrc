@@ -22,6 +22,11 @@ export CLICOLOR=1
 export GREP_OPTIONS='--binary-files=without-match --color=auto -i'
 alias vless='/usr/share/vim/vim72/macros/less.sh'
 
+# go into vi mode for bash
+# http://www.catonmat.net/download/bash-vi-editing-mode-cheat-sheet.txt
+set -o vi
+bind '"\C-i":complete'
+
 if [ -n "`which mvn`" ]; then 
   export MAVEN_OPTS="-Xmx1g -XX:MaxPermSize=512m"
 fi
