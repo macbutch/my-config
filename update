@@ -1,24 +1,27 @@
 #!/bin/bash
 
 # Update (or install) the scripts and configuration files in this 
-
 # repository. Generally this won't overwrite existing stuff - it might in
 # some cases (for example vim plugins are basically just copied wholesale).
 
+# our files
+BASHRC=bashrc.bash
+VIMRC=vimrc.vimrc
+
 # start with vim config as it is probably the most immediately useful
 echo "Checking vim configuration... "
-mkdir -p ~/.vim
-cp -R vim/* ~/.vim
+mkdir -p $HOME/.vim
+cp -R vim/* $HOME/.vim
 
-if ! [ -a ~/.vimrc ]; then
-  echo "Creating ~/.vimrc ... "
-  cp vimrc ~/.vimrc
+if ! [ -a $HOME/.vimrc ]; then
+  echo "Creating $HOME/.vimrc ... "
+  cp $VIMRC $HOME/.vimrc
 else
-  if diff ~/.vimrc vimrc; then
-    echo "~/.vimrc is already up-to-date."
+  if diff $HOME/.vimrc $VIMRC; then
+    echo "$HOME/.vimrc is already up-to-date."
   else
-    echo "Need to merge ~/.vimrc ... "
-    vimdiff vimrc ~/.vimrc 
+    echo "Need to merge $HOME/.vimrc ... "
+    vimdiff $VIMRC $HOME/.vimrc 
   fi
 fi
 echo "Vim configuration is up-to-date."
@@ -26,22 +29,22 @@ echo
 
 # next bashrc
 echo "Checking bash configuration"
-if ! [ -a ~/.bashrc ]; then
-  echo "No existing ~/.bashrc - creating one for you."
-  cp bashrc.bash ~/.bashrc
+if ! [ -a $HOME/.bashrc ]; then
+  echo "No existing $HOME/.bashrc - creating one for you."
+  cp $BASHRC $HOME/.bashrc
 else
-  if diff ~/.bashrc bashrc.bash; then
-    echo "~/.bashrc is already up-to-date."
+  if diff $HOME/.bashrc $BASHRC; then
+    echo "$HOME/.bashrc is already up-to-date."
   else
-    echo "Need to merge ~/.bashrc ..."
-    vimdiff bashrc.bash ~/.bashrc 
+    echo "Need to merge $HOME/.bashrc ..."
+    vimdiff $BASHRC $HOME/.bashrc 
   fi
 fi
 echo "Bash configuration is up-to-date."
 
 # binary files -- basically just copy ...
 echo "Updating local utils ..."
-mkdir -p ~/bin
+mkdir -p $HOME/bin
 cp -R bin/* $HOME/bin
 echo "Local utils up-to-date."
 
