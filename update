@@ -28,13 +28,13 @@ echo
 echo "Checking bash configuration"
 if ! [ -a ~/.bashrc ]; then
   echo "No existing ~/.bashrc - creating one for you."
-  cp bashrc ~/.bashrc
+  cp bashrc.bash ~/.bashrc
 else
-  if diff ~/.bashrc bashrc; then
+  if diff ~/.bashrc bashrc.bash; then
     echo "~/.bashrc is already up-to-date."
   else
     echo "Need to merge ~/.bashrc ..."
-    vimdiff bashrc ~/.bashrc 
+    vimdiff bashrc.bash ~/.bashrc 
   fi
 fi
 echo "Bash configuration is up-to-date."
